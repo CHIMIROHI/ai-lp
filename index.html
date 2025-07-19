@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIプログラミング学習コミュニティ</title>
+    <style>
+        :root {
+            --background-color: #1A202C; /* Slightly lighter dark blue/grey */
+            --surface-color: #2D3748; /* Even lighter blue/grey */
+            --primary-color: #38B2AC; /* Teal */
+            --primary-hover-color: #319795; /* Darker Teal */
+            --text-color: #E2E8F0; /* Light grey */
+            --text-muted-color: #A0AEC0; /* Muted grey */
+            --border-color: #4A5568;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 960px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+        header {
+            background: var(--background-color);
+            color: #fff;
+            padding: 4rem 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .profile-icon {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--surface-color);
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: var(--text-color);
+        }
+        header p {
+            font-size: 1.3rem;
+            color: var(--text-muted-color);
+            max-width: 600px;
+            margin: 1rem auto 0;
+        }
+        .main-cta {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 30px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 5px 15px rgba(56, 178, 172, 0.2);
+        }
+        .main-cta:hover {
+            background: var(--primary-hover-color);
+            transform: translateY(-3px);
+        }
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        .feature {
+            background: var(--surface-color);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            border-color: var(--primary-color);
+        }
+        .feature h3 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        .target-list {
+            list-style: '✓';
+            padding-left: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        .target-list li {
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted-color);
+        }
+        .join-section {
+            background: linear-gradient(135deg, var(--surface-color) 0%, var(--background-color) 100%);
+            color: #fff;
+            text-align: center;
+            padding: 6rem 0;
+        }
+        .join-section h2 {
+            color: #fff;
+        }
+        .join-section p {
+            max-width: 600px;
+            margin: 1rem auto 2.5rem;
+            font-size: 1.2rem;
+            color: var(--text-muted-color);
+        }
+        .discord-button {
+            display: inline-block;
+            background: #5865F2; /* Discord's brand color */
+            color: #fff;
+            padding: 20px 45px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+        }
+        .discord-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
+            background-color: #4a56d4;
+        }
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            background: var(--background-color);
+            color: var(--text-muted-color);
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <img src="face.jpg" alt="プロフィール画像" class="profile-icon">
+            <h1>未来を創る、AIプログラミング学習コミュニティへようこそ</h1>
+            <p>初心者から経験者まで、誰もがAI技術を学び、実践し、成長できる場所です。</p>
+            <a href="#join" class="main-cta">今すぐコミュニティに参加する</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="about">
+            <div class="container">
+                <h2>このコミュニティでできること</h2>
+                <div class="features">
+                    <div class="feature">
+                        <h3>最新情報の共有</h3>
+                        <p>論文や技術トレンドなど、AIに関する最新情報が日々共有され、メンバーと議論できます。</p>
+                    </div>
+                    <div class="feature">
+                        <h3>質問＆コードレビュー</h3>
+                        <p>行き詰まった時はいつでも質問可能。経験豊富なメンバーがあなたの学習をサポートし、コードをレビューします。</p>
+                    </div>
+                    <div class="feature">
+                        <h3>共同プロジェクト</h3>
+                        <p>仲間とチームを組み、実践的なAIアプリケーション開発に挑戦。ポートフォリオを充実させましょう。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="target">
+            <div class="container">
+                <h2>こんな方におすすめ</h2>
+                <ul class="target-list">
+                    <li>AIプログラミングに興味があるけど、何から始めればいいかわからない方</li>
+                    <li>独学で行き詰まりを感じており、相談できる仲間が欲しい方</li>
+                    <li>一緒にプロジェクトを進める仲間を見つけたい方</li>
+                    <li>最新技術をキャッチアップし、スキルを向上させたい方</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="join" class="join-section">
+            <div class="container">
+                <h2>さあ、あなたもコミュニティの一員に</h2>
+                <p>未来のテクノロジーを、最高の仲間たちと一緒に学びませんか？<br>下のボタンからDiscordサーバーに参加して、今日からAI学習を始めましょう！</p>
+                <a href="https://discord.gg/your-invite-link" target="_blank" class="discord-button">🚀 Discordに参加する</a>
+                <p style="margin-top: 20px; font-size: 0.9rem;">（リンクをクリックするとDiscordが開きます）</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AIプログラミング学習コミュニティ. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
