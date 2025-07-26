@@ -4,207 +4,273 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>カゲヤマラボ - AIプログラミング学習コミュニティ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --background-color: #1A202C; /* Slightly lighter dark blue/grey */
-            --surface-color: #2D3748; /* Even lighter blue/grey */
-            --primary-color: #38B2AC; /* Teal */
-            --primary-hover-color: #319795; /* Darker Teal */
-            --text-color: #E2E8F0; /* Light grey */
-            --text-muted-color: #A0AEC0; /* Muted grey */
-            --border-color: #4A5568;
+            --base-bg: #101014;
+            --surface-bg: rgba(38, 38, 42, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary-accent: #00ffff; /* Cyan */
+            --secondary-accent: #ff00ff; /* Magenta */
+            --text-light: #f0f0f5;
+            --text-mid: #a0a0b0;
+            --text-dark: #707080;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
             margin: 0;
             padding: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            transition: background-color 0.3s, color 0.3s;
+            background-color: var(--base-bg);
+            color: var(--text-light);
+            background-image: linear-gradient(-45deg, #101014, #1a1a2e, #101014, #2e1a2e);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+            overflow-x: hidden;
         }
+
         .container {
-            max-width: 960px;
+            max-width: 1100px;
             margin: auto;
-            overflow: hidden;
-            padding: 0 20px;
+            padding: 0 2rem;
         }
+
         header {
-            background: var(--background-color);
-            color: #fff;
-            padding: 4rem 0;
             text-align: center;
-            border-bottom: 1px solid var(--border-color);
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
         }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
         .profile-icon {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
-            border: 5px solid var(--surface-color);
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
-            margin-bottom: 2rem;
+            border: 4px solid var(--primary-accent);
+            box-shadow: 0 0 30px var(--primary-accent), 0 0 60px var(--secondary-accent);
+            margin-bottom: 2.5rem;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
+        .profile-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px var(--secondary-accent), 0 0 80px var(--primary-accent);
+        }
+
         header h1 {
-            margin: 0;
-            font-size: 3rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 4rem;
             font-weight: 700;
-            letter-spacing: -1px;
-            color: var(--text-color);
+            letter-spacing: -2px;
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
         }
+
         header p {
-            font-size: 1.3rem;
-            color: var(--text-muted-color);
-            max-width: 600px;
-            margin: 1rem auto 0;
+            font-size: 1.4rem;
+            color: var(--text-mid);
+            max-width: 650px;
+            margin: 1.5rem auto 2.5rem;
         }
+
         .main-cta {
             display: inline-block;
-            background: var(--primary-color);
-            color: #fff;
-            padding: 15px 35px;
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            color: var(--base-bg);
+            padding: 18px 40px;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-top: 30px;
-            transition: background-color 0.3s, transform 0.3s;
-            box-shadow: 0 5px 15px rgba(56, 178, 172, 0.2);
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2), 0 10px 30px rgba(255, 0, 255, 0.2);
+            border: none;
         }
         .main-cta:hover {
-            background: var(--primary-hover-color);
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.3), 0 15px 40px rgba(255, 0, 255, 0.3);
         }
+
         section {
-            padding: 5rem 0;
-            border-bottom: 1px solid var(--border-color);
+            padding: 6rem 0;
+            position: relative;
         }
-        section:last-of-type {
-            border-bottom: none;
-        }
+
         h2 {
+            font-family: 'Poppins', sans-serif;
             text-align: center;
-            margin-bottom: 4rem;
-            font-size: 2.5rem;
+            margin-bottom: 5rem;
+            font-size: 3rem;
             font-weight: 600;
-            color: var(--text-color);
+            background: linear-gradient(90deg, var(--text-light), var(--text-mid));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            text-align: left;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
+
         .feature {
-            background: var(--surface-color);
-            padding: 2.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            background: var(--surface-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 8px 32px 0 var(--shadow-color);
         }
         .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            border-color: var(--primary-color);
+            transform: translateY(-10px);
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
         }
+
         .feature h3 {
-            font-size: 1.6rem;
-            color: var(--primary-color);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary-accent);
             margin-top: 0;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
+        
+        .feature p {
+            color: var(--text-mid);
+        }
+
+        #target {
+            background-color: rgba(0,0,0,0.2);
+        }
+
         .target-list {
-            list-style: '✓';
-            padding-left: 2rem;
-            max-width: 600px;
+            list-style: none;
+            padding: 0;
+            max-width: 700px;
             margin: 0 auto;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
         .target-list li {
-            padding-left: 1rem;
-            margin-bottom: 1rem;
-            color: var(--text-muted-color);
+            background: var(--surface-bg);
+            margin-bottom: 1.5rem;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--secondary-accent);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            color: var(--text-mid);
         }
+        .target-list li:before {
+            content: '⚡️';
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-list li:hover {
+            transform: translateX(10px);
+            background-color: rgba(38, 38, 42, 0.8);
+        }
+
         .join-section {
-            background: linear-gradient(135deg, var(--surface-color) 0%, var(--background-color) 100%);
-            color: #fff;
             text-align: center;
-            padding: 6rem 0;
+            padding: 8rem 0;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.1), transparent 70%),
+                        radial-gradient(circle, rgba(0, 255, 255, 0.1), transparent 70%);
+            background-position: -10% 50%, 110% 50%;
+            background-repeat: no-repeat;
         }
         .join-section h2 {
-            color: #fff;
+            color: var(--text-light);
         }
         .join-section p {
             max-width: 600px;
-            margin: 1rem auto 2.5rem;
-            font-size: 1.2rem;
-            color: var(--text-muted-color);
+            margin: 1rem auto 3rem;
+            font-size: 1.3rem;
+            color: var(--text-mid);
         }
+
         .discord-button {
             display: inline-block;
-            background: #5865F2; /* Discord's brand color */
+            background: #5865F2;
             color: #fff;
-            padding: 20px 45px;
+            padding: 22px 50px;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+            font-size: 1.6rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.4);
+            border: 2px solid transparent;
         }
         .discord-button:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(88, 101, 242, 0.6);
             background-color: #4a56d4;
+            border-color: #fff;
         }
+
         footer {
             text-align: center;
-            padding: 3rem 0;
-            background: var(--background-color);
-            color: var(--text-muted-color);
-            border-top: 1px solid var(--border-color);
+            padding: 4rem 0;
+            background: var(--base-bg);
+            color: var(--text-dark);
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
         }
 
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5rem;
-            }
-            h2 {
-                font-size: 2rem;
-            }
-            .features {
-                grid-template-columns: 1fr;
-            }
+            header h1 { font-size: 3rem; }
+            h2 { font-size: 2.5rem; }
+            .features { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="container">
+        <div class="header-content container">
             <img src="face.jpg" alt="プロフィール画像" class="profile-icon">
-            <h1>カゲヤマラボへようこそ</h1>
-            <p>初心者から経験者まで、誰もがAI技術を学び、実践し、成長できる場所です。</p>
-            <a href="#join" class="main-cta">今すぐコミュニティに参加する</a>
+            <h1>カゲヤマラボ</h1>
+            <p>AIの未来を、共に探求し、創造する場所。あなたの情熱とコードが、世界を変える力になる。</p>
+            <a href="#join" class="main-cta">今すぐ未来に参加する</a>
         </div>
     </header>
 
     <main>
         <section id="about">
             <div class="container">
-                <h2>このコミュニティでできること</h2>
+                <h2>What We Do</h2>
                 <div class="features">
                     <div class="feature">
-                        <h3>最新情報の共有</h3>
-                        <p>論文や技術トレンドなど、AIに関する最新情報が日々共有され、メンバーと議論できます。</p>
+                        <h3>最先端の探求</h3>
+                        <p>最新の論文や技術トレンドを深掘りし、AIの限界を押し広げる議論を交わします。知識はここで加速する。</p>
                     </div>
                     <div class="feature">
-                        <h3>質問＆コードレビュー</h3>
-                        <p>行き詰まった時はいつでも質問可能。経験豊富なメンバーがあなたの学習をサポートし、コードをレビューします。</p>
+                        <h3>コラボレーション</h3>
+                        <p>行き詰まりは成長のチャンス。経験豊富なメンターがコードをレビューし、共に課題を解決します。</p>
                     </div>
                     <div class="feature">
-                        <h3>共同プロジェクト</h3>
-                        <p>仲間とチームを組み、実践的なAIアプリケーション開発に挑戦。ポートフォリオを充実させましょう。</p>
+                        <h3>創造と実践</h3>
+                        <p>アイデアを形に。仲間とチームを組み、世界にインパクトを与えるAIアプリケーションを開発します。</p>
                     </div>
                 </div>
             </div>
@@ -212,29 +278,29 @@
 
         <section id="target">
             <div class="container">
-                <h2>こんな方におすすめ</h2>
+                <h2>Who It's For</h2>
                 <ul class="target-list">
-                    <li>AIプログラミングに興味があるけど、何から始めればいいかわからない方</li>
-                    <li>独学で行き詰まりを感じており、相談できる仲間が欲しい方</li>
-                    <li>一緒にプロジェクトを進める仲間を見つけたい方</li>
-                    <li>最新技術をキャッチアップし、スキルを向上させたい方</li>
+                    <li>AIという未知の領域へ、最初の一歩を踏み出したい探求者</li>
+                    <li>独学の壁を越え、共に高め合える仲間を求める冒険者</li>
+                    <li>自らの手で未来を創り出すプロジェクトに参加したい開発者</li>
+                    <li>常に最新の知識を吸収し、スキルを磨き続けたい挑戦者</li>
                 </ul>
             </div>
         </section>
 
         <section id="join" class="join-section">
             <div class="container">
-                <h2>さあ、あなたもコミュニティの一員に</h2>
-                <p>未来のテクノロジーを、最高の仲間たちと一緒に学びませんか？<br>下のボタンからDiscordサーバーに参加して、今日からAI学習を始めましょう！</p>
-                <a href="https://discord.gg/your-invite-link" target="_blank" class="discord-button">🚀 Discordに参加する</a>
-                <p style="margin-top: 20px; font-size: 0.9rem;">（リンクをクリックするとDiscordが開きます）</p>
+                <h2>Join The Lab</h2>
+                <p>準備はいいか？<br>未来は待ってくれない。今すぐDiscordに参加し、創造の旅を始めよう。</p>
+                <a href="https://discord.gg/your-invite-link" target="_blank" class="discord-button">🚀 Enter the Lab</a>
+                <p style="margin-top: 25px; font-size: 1rem; color: var(--text-dark);">(Discordへの招待が開きます)</p>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 カゲヤマラボ. All rights reserved.</p>
+            <p>&copy; 2025 カゲヤマラボ. All rights reserved. Built with passion.</p>
         </div>
     </footer>
 
